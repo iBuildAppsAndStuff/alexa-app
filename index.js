@@ -322,9 +322,11 @@ alexa.slot = function(slot) {
     var results = [];
     if(this.resolutions && this.resolutions.resolutionsPerAuthority && this.resolutions.resolutionsPerAuthority.length > 0) {
       this.resolutions.resolutionsPerAuthority.forEach(function(authority) {
-        authority.values.forEach(function(value) {
-          results.push(value.value.name);
-        });
+        if(authority && authority.values && authority.values.length > 0) {
+          authority.values.forEach(function(value) {
+            results.push(value.value.name);
+          });
+        }
       });
     }
     return results;
