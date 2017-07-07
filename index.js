@@ -313,10 +313,22 @@ alexa.slot = function(slot) {
   this.name = slot.name;
   this.value = slot.value;
   this.confirmationStatus = slot.confirmationStatus;
+  this.resolutions = slot.resolutions;
 
   this.isConfirmed = function() {
     return 'CONFIRMED' === this.confirmationStatus;
   };
+  this.resolvedValues = function() {
+    var results = [];
+    if(this.resolutions && this.resolutions.resolutionsPerAuthority && this.resolutions.resolutionsPerAuthority.length > 0) {
+      this.resolutions.resolutionsPerAuthority.forEach(function(authority) {
+        authority.values.forEach(function(value) {
+          results.push(value.value.name);
+        });
+      });
+    }
+    return results;
+  }
 };
 
 alexa.session = function(session) {
