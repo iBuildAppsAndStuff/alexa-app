@@ -198,6 +198,7 @@ alexa.directives = function(directives) {
 };
 
 alexa.request = function(json) {
+  console.log(json);
   this.data = json;
   this.slots = {};
   if (this.data.request && this.data.request.intent && this.data.request.intent.slots && Object.keys(this.data.request.intent.slots).length > 0) {
